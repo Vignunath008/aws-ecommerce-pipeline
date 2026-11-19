@@ -1,0 +1,5 @@
+# Local testing
+pytest>=8.0
+boto3>=1.34
+moto[s3]>=5.0
+pyspark>=3.3      # Glue 4.0 runs Spark 3.3; any 3.3+ works for the unit tests (needs Java)

@@ -1,0 +1,5 @@
+order_id,order_ts,customer_id,product_id,quantity,unit_price,currency,order_status,line_total,source_file
+O1001,2026-11-18 09:15:00,C001,P100,2,19.99,USD,placed,39.98,
+O1001,2026-11-18 09:15:00,C001,P200,1,5.50,USD,placed,5.50,
+O1002,2026-11-18 11:45:00,C002,P100,3,19.99,USD,shipped,59.97,
+O1006,2026-11-18 15:20:00,C006,P500,4,12.25,EUR,delivered,49.00,

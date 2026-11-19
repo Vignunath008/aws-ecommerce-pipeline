@@ -1,0 +1,7 @@
+Logical date (ds): 2026-11-18
+
+wait_for_orders_file  bucket_key : validated/2026-11-18/*.csv
+glue_transform_orders --source_path : s3://ecom-raw/validated/2026-11-18/
+glue_transform_orders --target_path : s3://ecom-curated/orders/load_date=2026-11-18/
+load_redshift         COPY FROM  : s3://ecom-curated/orders/load_date=2026-11-18/
+load_redshift         statements : 8 (DELETE, COPY, DROP, CREATE TEMP, INSERT x3, DELETE) in one transaction

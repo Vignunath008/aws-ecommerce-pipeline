@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Env / secrets
+.env
+*.pem
+credentials*
+.aws/
+terraform.tfvars
+
+# Airflow
+logs/
+airflow.db
+airflow.cfg
+unittests.cfg
+
+# Terraform / build
+.terraform/
+*.tfstate*
+crash.log
+terraform/build/
+dist/
+build/
+*.zip
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/

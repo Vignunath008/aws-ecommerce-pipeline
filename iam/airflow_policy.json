@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SenseValidatedFiles",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": "arn:aws:s3:::${raw_bucket}"
+    },
+    {
+      "Sid": "RunGlueJob",
+      "Effect": "Allow",
+      "Action": ["glue:StartJobRun", "glue:GetJobRun", "glue:GetJobRuns", "glue:GetJob"],
+      "Resource": "arn:aws:glue:*:*:job/${glue_job_name}"
+    },
+    {
+      "Sid": "GlueLogs",
+      "Effect": "Allow",
+      "Action": ["logs:GetLogEvents", "logs:DescribeLogStreams", "logs:FilterLogEvents"],
+      "Resource": "arn:aws:logs:*:*:log-group:/aws-glue/*"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{"status": "validated", "key": "incoming/orders_sample.csv", "dest": "validated/2026-11-18/orders_sample.csv"}
+{"status": "quarantined", "key": "incoming/bad_orders_missing_column.csv", "dest": "quarantine/2026-11-18/bad_orders_missing_column.csv", "reason": "missing columns: ['unit_price']"}
+{"status": "quarantined", "key": "incoming/empty.csv", "dest": "quarantine/2026-11-18/empty.csv", "reason": "empty file"}
+
+Bucket after Lambda:
+  s3://ecom-raw/quarantine/2026-11-18/bad_orders_missing_column.csv
+  s3://ecom-raw/quarantine/2026-11-18/empty.csv
+  s3://ecom-raw/validated/2026-11-18/orders_sample.csv

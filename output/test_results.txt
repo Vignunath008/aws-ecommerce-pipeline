@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-9.1.1, pluggy-1.6.0 -- /usr/local/bin/python3
+cachedir: .pytest_cache
+rootdir: aws-ecommerce-pipeline
+plugins: platformdirs-4.13.5, anyio-4.15.1
+collecting ... collected 11 items
+
+tests/test_validate_lambda.py::test_validate_header_ok PASSED            [  9%]
+tests/test_validate_lambda.py::test_validate_header_missing PASSED       [ 18%]
+tests/test_validate_lambda.py::test_good_file_goes_to_validated PASSED   [ 27%]
+tests/test_validate_lambda.py::test_bad_header_goes_to_quarantine PASSED [ 36%]
+tests/test_validate_lambda.py::test_empty_and_wrong_extension PASSED     [ 45%]
+tests/test_transform_orders.py::test_columns_match_staging_order PASSED  [ 54%]
+tests/test_transform_orders.py::test_bad_rows_removed PASSED             [ 63%]
+tests/test_transform_orders.py::test_dedup_keeps_latest PASSED           [ 72%]
+tests/test_transform_orders.py::test_cleaning_and_line_total PASSED      [ 81%]
+tests/test_quality_checks.py::test_every_check_has_one_select PASSED     [ 90%]
+tests/test_quality_checks.py::test_load_sql_has_no_truncate_or_manual_transaction PASSED [100%]
+
+============================= 11 passed in 33.80s ==============================

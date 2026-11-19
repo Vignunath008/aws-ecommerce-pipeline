@@ -1,0 +1,2 @@
+order_id,order_ts,customer_id,product_id,quantity,currency,order_status
+O2001,2026-11-18 09:00:00,C010,P100,1,USD,placed

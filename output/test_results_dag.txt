@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.18, pytest-8.3.4, pluggy-1.5.0 -- /tmp/af/bin/python
+cachedir: .pytest_cache
+rootdir: aws-ecommerce-pipeline
+plugins: anyio-4.7.0, time-machine-2.16.0
+collecting ... collected 2 items
+
+tests/test_dag.py::test_dag_loads_and_order PASSED                       [ 50%]
+tests/test_dag.py::test_parse_checks PASSED                              [100%]
+
+============================== 2 passed in 3.18s ===============================

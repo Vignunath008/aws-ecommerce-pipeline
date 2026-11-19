@@ -1,0 +1,5 @@
+aws_region              = "us-east-1"
+project                 = "ecom-pipeline"
+env                     = "dev"
+create_redshift         = true
+redshift_admin_password = "ChangeMe123"   # copy this file to terraform.tfvars; never commit real secrets

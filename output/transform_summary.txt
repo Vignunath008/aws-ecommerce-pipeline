@@ -1,0 +1,3 @@
+Input rows : 9
+Output rows: 4
+Dropped    : 5 (zero qty, bad date, negative price, missing order_id, older duplicate)
