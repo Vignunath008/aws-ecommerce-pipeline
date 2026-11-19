@@ -6,24 +6,7 @@ Infrastructure is defined in Terraform.
 
 ## Architecture
 
-```
-S3 raw: incoming/*.csv
-   │  ObjectCreated
-   ▼
-Lambda validate_and_trigger ──(bad file)──► raw: quarantine/<date>/
-   │ (good file)
-   ▼
-raw: validated/<arrival-date>/*.csv
-   │  Airflow S3KeySensor  (daily, {{ ds }})
-   ▼
-Glue transform_orders ──► curated: orders/load_date=<ds>/*.parquet   (overwrite = idempotent)
-   │
-   ▼
-Redshift: COPY → staging.orders_stg → dedupe → dim_customer / dim_product / fact_order_lines
-   │
-   ▼
-Data quality checks (quality/checks.sql) → DAG fails on any violation
-```
+![End-to-end architecture](docs/images/architecture.svg)
 
 ### Design decisions
 - **One trigger path.** The Lambda only validates and routes files; Airflow is the only thing
@@ -34,6 +17,14 @@ Data quality checks (quality/checks.sql) → DAG fails on any violation
   delete + insert in a single transaction, so re-running a day gives the same result.
 - **Dedup twice.** Glue keeps the latest version of each `(order_id, product_id)`. The load SQL
   dedupes staging again before it touches the fact table.
+
+### Airflow DAG
+
+![Airflow DAG tasks](docs/images/airflow_dag.svg)
+
+### Redshift data model
+
+![Redshift star schema](docs/images/star_schema.svg)
 
 ## Project layout
 
@@ -48,6 +39,8 @@ Data quality checks (quality/checks.sql) → DAG fails on any violation
 | `iam/*.json` | Least-privilege IAM policies (Terraform fills `${...}` placeholders) |
 | `terraform/` | S3, Lambda + trigger, Glue job, IAM, Redshift Serverless |
 | `sample_data/` | Sample good/bad files for testing |
+| `docs/` | README diagrams and the script that generates them |
+| `output/` | Real results from running the pipeline code on the sample data |
 | `tests/` | pytest: Lambda (moto), Glue transform (local Spark), SQL checks, DAG |
 
 ## Input format (CSV)
@@ -93,8 +86,10 @@ future-dated orders, and orphan customer/product keys.
 
 ## Sample output
 
-See [`output/`](output/): test results, Lambda routing log, and the Glue transform's
-output on the sample data (9 input rows → 4 clean rows).
+![Glue transform on the sample data](docs/images/data_cleaning.svg)
+
+See [`output/`](output/) for the full results: test runs, the Lambda routing log, and the
+transformed CSV.
 
 ## Regenerate this project
 

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="540" viewBox="0 0 1080 540" font-family="Arial, Helvetica, sans-serif">
+<title>Redshift star schema</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker><marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#017cee"/></marker></defs>
+<rect width="1080" height="540" fill="#ffffff"/>
+<text x="30" y="36" font-size="20" font-weight="700" fill="#111827">Redshift data model</text>
+<text x="30" y="58" font-size="13" fill="#6b7280">Parquet is copied into staging, deduplicated, then upserted into one fact table and two dimensions.</text>
+<rect x="380" y="170" width="320" height="302" rx="8" fill="#ffffff" stroke="#2e73b8" stroke-width="2"/>
+<rect x="380" y="170" width="320" height="38" rx="8" fill="#2e73b8"/>
+<rect x="380" y="200" width="320" height="8" fill="#2e73b8"/>
+<text x="540.0" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">analytics.fact_order_lines</text>
+<text x="394" y="224" font-size="12" font-weight="700" fill="#111827">order_id</text>
+<text x="622" y="224" text-anchor="end" font-size="11" fill="#6b7280">VARCHAR(64)</text>
+<text x="688" y="224" text-anchor="end" font-size="11" font-weight="700" fill="#b45309">PK</text>
+<rect x="382" y="232" width="316" height="24" fill="#e8f1fa"/>
+<text x="394" y="248" font-size="12" font-weight="700" fill="#111827">product_id</text>
+<text x="622" y="248" text-anchor="end" font-size="11" fill="#6b7280">VARCHAR(64)</text>
+<text x="688" y="248" text-anchor="end" font-size="11" font-weight="700" fill="#b45309">PK, FK</text>
+<text x="394" y="272" font-size="12" font-weight="700" fill="#111827">customer_id</text>
+<text x="622" y="272" text-anchor="end" font-size="11" fill="#6b7280">VARCHAR(64)</text>
+<text x="688" y="272" text-anchor="end" font-size="11" font-weight="700" fill="#2e73b8">FK</text>
+<rect x="382" y="280" width="316" height="24" fill="#e8f1fa"/>
+<text x="394" y="296" font-size="12" font-weight="400" fill="#111827">order_ts</text>
+<text x="622" y="296" text-anchor="end" font-size="11" fill="#6b7280">TIMESTAMP</text>
+<text x="394" y="320" font-size="12" font-weight="700" fill="#111827">order_date</text>
+<text x="622" y="320" text-anchor="end" font-size="11" fill="#6b7280">DATE</text>
+<text x="688" y="320" text-anchor="end" font-size="11" font-weight="700" fill="#0f766e">SORTKEY</text>
+<rect x="382" y="328" width="316" height="24" fill="#e8f1fa"/>
+<text x="394" y="344" font-size="12" font-weight="400" fill="#111827">quantity</text>
+<text x="622" y="344" text-anchor="end" font-size="11" fill="#6b7280">INTEGER</text>
+<text x="394" y="368" font-size="12" font-weight="400" fill="#111827">unit_price</text>
+<text x="622" y="368" text-anchor="end" font-size="11" fill="#6b7280">DECIMAL(12,2)</text>
+<rect x="382" y="376" width="316" height="24" fill="#e8f1fa"/>
+<text x="394" y="392" font-size="12" font-weight="400" fill="#111827">line_total</text>
+<text x="622" y="392" text-anchor="end" font-size="11" fill="#6b7280">DECIMAL(14,2)</text>
+<text x="394" y="416" font-size="12" font-weight="400" fill="#111827">currency</text>
+<text x="622" y="416" text-anchor="end" font-size="11" fill="#6b7280">VARCHAR(3)</text>
+<rect x="382" y="424" width="316" height="24" fill="#e8f1fa"/>
+<text x="394" y="440" font-size="12" font-weight="400" fill="#111827">order_status</text>
+<text x="622" y="440" text-anchor="end" font-size="11" fill="#6b7280">VARCHAR(32)</text>
+<text x="394" y="464" font-size="12" font-weight="400" fill="#111827">load_ts</text>
+<text x="622" y="464" text-anchor="end" font-size="11" fill="#6b7280">TIMESTAMP</text>
+<text x="540.0" y="492" text-anchor="middle" font-size="11" fill="#6b7280">DISTKEY customer_id  ·  SORTKEY order_date</text>
+<rect x="30" y="230" width="260" height="110" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+<rect x="30" y="230" width="260" height="38" rx="8" fill="#0f766e"/>
+<rect x="30" y="260" width="260" height="8" fill="#0f766e"/>
+<text x="160.0" y="255" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">analytics.dim_customer</text>
+<text x="44" y="284" font-size="12" font-weight="700" fill="#111827">customer_key</text>
+<text x="212" y="284" text-anchor="end" font-size="11" fill="#6b7280">BIGINT</text>
+<text x="278" y="284" text-anchor="end" font-size="11" font-weight="700" fill="#b45309">PK</text>
+<rect x="32" y="292" width="256" height="24" fill="#e6f6f4"/>
+<text x="44" y="308" font-size="12" font-weight="400" fill="#111827">customer_id</text>
+<text x="212" y="308" text-anchor="end" font-size="11" fill="#6b7280">VARCHAR(64)</text>
+<text x="44" y="332" font-size="12" font-weight="400" fill="#111827">first_seen_ts</text>
+<text x="212" y="332" text-anchor="end" font-size="11" fill="#6b7280">TIMESTAMP</text>
+<text x="160.0" y="360" text-anchor="middle" font-size="11" fill="#6b7280">DISTSTYLE ALL</text>
+<rect x="790" y="230" width="260" height="110" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+<rect x="790" y="230" width="260" height="38" rx="8" fill="#0f766e"/>
+<rect x="790" y="260" width="260" height="8" fill="#0f766e"/>
+<text x="920.0" y="255" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">analytics.dim_product</text>
+<text x="804" y="284" font-size="12" font-weight="700" fill="#111827">product_key</text>
+<text x="972" y="284" text-anchor="end" font-size="11" fill="#6b7280">BIGINT</text>
+<text x="1038" y="284" text-anchor="end" font-size="11" font-weight="700" fill="#b45309">PK</text>
+<rect x="792" y="292" width="256" height="24" fill="#e6f6f4"/>
+<text x="804" y="308" font-size="12" font-weight="400" fill="#111827">product_id</text>
+<text x="972" y="308" text-anchor="end" font-size="11" fill="#6b7280">VARCHAR(64)</text>
+<text x="804" y="332" font-size="12" font-weight="400" fill="#111827">first_seen_ts</text>
+<text x="972" y="332" text-anchor="end" font-size="11" fill="#6b7280">TIMESTAMP</text>
+<text x="920.0" y="360" text-anchor="middle" font-size="11" fill="#6b7280">DISTSTYLE ALL</text>
+<path d="M290,304.0 L335,304.0 L335,268.0 L380,268.0" fill="none" stroke="#2e73b8" stroke-width="2"/>
+<path d="M790,304.0 L745,304.0 L745,244.0 L700,244.0" fill="none" stroke="#2e73b8" stroke-width="2"/>
+<rect x="307" y="276.0" width="56" height="18" rx="4" fill="#ffffff" stroke="#2e73b8"/>
+<text x="335" y="289.5" text-anchor="middle" font-size="11" fill="#2e73b8">1 : many</text>
+<rect x="717" y="264.0" width="56" height="18" rx="4" fill="#ffffff" stroke="#2e73b8"/>
+<text x="745" y="277.5" text-anchor="middle" font-size="11" fill="#2e73b8">1 : many</text>
+<rect x="380" y="80" width="320" height="56" rx="10" fill="#ecf7e8" stroke="#3f8624" stroke-width="2"/>
+<text x="540.0" y="103" text-anchor="middle" font-size="15" font-weight="700" fill="#111827">staging.orders_stg</text>
+<text x="540.0" y="123" text-anchor="middle" font-size="12" fill="#4b5563">11 columns, same order as the Glue output</text>
+<path d="M540.0,136 L540.0,166" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#a)"/>
+<text x="550.0" y="157.0" font-size="12" font-style="italic" fill="#374151">dedupe + upsert</text>
+<text x="30" y="520" font-size="12" fill="#6b7280">PK = primary key  ·  FK = links to a dimension  ·  SORTKEY speeds up date filters  ·  DISTSTYLE ALL copies small tables to every node</text>
+</svg>
